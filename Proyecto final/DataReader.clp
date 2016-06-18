@@ -71,7 +71,7 @@
   (bind ?Leido (read mydata))
   (retract ?f)
   (if (neq ?Leido EOF) then
-  (assert (ValorSector
+    (assert (ValorSector
             (Nombre ?Leido)
             (PERCVardia (read mydata))
             (Capitalizacion (read mydata))
@@ -85,8 +85,8 @@
             (PERCVarTri (read mydata))
             (PERCVarSem (read mydata))
             (PERCVar12Mes (read mydata))
+      )
     )
-  )
     (assert (SeguirLeyendo))
   )
 )
@@ -132,4 +132,43 @@
   =>
   (retract ?fact)
   (close mydata)
+  (assert (detectarInestable))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Detectar valores inestables
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defrule AniadirInestableConstruccion (declare (salience 20))
+  (detectarInestable)
+  (ValorIbex
+    (Nombre ?nombre)
+    (Sector Construccion)
+  )
+  =>
+  (assert (Inestable ?nombre))
+  (printout t crlf ?nombre " es parte del sector de la construccion, por defecto es inestable" crlf)
+)
+
+(defrule AniadirInestableServicios (declare (salience 20))
+  (detectarInestable)
+  (ValorIbex
+    (Nombre ?nombre)
+    (Sector Servicios)
+  )
+  (ValorSector
+    (Nombre Ibex)
+    (PERCVar5Dias ?var)
+  )
+  =>
+  (if (< ?var 0) then
+    (assert (Inestable ?nombre))
+    (printout t crlf ?nombre " es parte del sector servicios y la economia cae, por defecto es inestable" crlf)
+  )
+)
+
+(defrule finDeteccionInestable (declare (salience 0))
+  ?fact <- (detectarInestable)
+  =>
+  (retract ?fact)
 )
