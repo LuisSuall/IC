@@ -171,4 +171,5 @@
   ?fact <- (detectarInestable)
   =>
   (retract ?fact)
+  (assert (Modulo1))
 )
