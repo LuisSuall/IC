@@ -21,7 +21,7 @@
   (field Tamano)
   (field PERCIbex)
   (field EtiqPER)
-  (field Etiq.RPD)
+  (field EtiqRPD)
   (field Sector)
   (field PERCVar5Dias)
   (field Perd3Consec)

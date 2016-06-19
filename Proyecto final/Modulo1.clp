@@ -11,7 +11,7 @@
   (printout t crlf ?nombre " es peligroso(Inestable)." crlf)
 )
 
-(defrule Peligroso (declare (salience 0))
+(defrule Peligroso (declare (salience 5))
   (Modulo1)
   (ValorCartera (Nombre ?nombre))
   (not (Peligroso ?nombre))
@@ -25,4 +25,11 @@
     (assert (Peligroso ?nombre))
     (printout t crlf ?nombre " es peligroso." crlf)
   )
+)
+
+(defrule PasoAModulo2 (declare (salience 0))
+  ?f <- (Modulo1)
+  =>
+  (retract ?f)
+  (assert (Modulo2))
 )

@@ -28,7 +28,7 @@
               (Tamano (read mydata))
               (PERCIbex (read mydata))
               (EtiqPER (read mydata))
-              (Etiq.RPD (read mydata))
+              (EtiqRPD (read mydata))
               (Sector (read mydata))
               (PERCVar5Dias (read mydata))
               (Perd3Consec (read mydata))
