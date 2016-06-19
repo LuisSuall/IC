@@ -16,23 +16,26 @@
   (or
     (ValorIbex
       (Nombre ?nombre)
+      (EtiqPER Bajo)
       (PERCVarMen ?varmen)
       (PERCVarTri ?varlong)
     )
     (ValorIbex
       (Nombre ?nombre)
+      (EtiqPER Bajo)
       (PERCVarMen ?varmen)
       (PERCVarSem ?varlong)
     )
     (ValorIbex
       (Nombre ?nombre)
+      (EtiqPER Bajo)
       (PERCVarMen ?varmen)
       (PERCVar12Mes ?varlong)
     )
   )
   (not (Infravalorado ?nombre))
   =>
-  (if(< ?varlong 0) then
+  (if(< ?varlong -30) then
     (if(> ?varmen 0) then
       (if(< ?varmen 10) then
         (assert (Infravalorado ?nombre))
