@@ -69,5 +69,5 @@
   ?f <- (Modulo3)
   =>
   (retract ?f)
-  (assert (Modulo4))
+  (assert (Modulo41))
 )
