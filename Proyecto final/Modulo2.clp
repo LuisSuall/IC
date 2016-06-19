@@ -60,7 +60,7 @@
   (printout t crlf ?nombre " esta sobrevalorado (Empresa grande)." crlf)
 )
 
-(defrule PasoAModulo3 (declare (salience 0))
+(defrule PasoAModulo3 (declare (salience -10))
   ?f <- (Modulo2)
   =>
   (retract ?f)
