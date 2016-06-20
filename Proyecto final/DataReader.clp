@@ -132,6 +132,42 @@
   =>
   (retract ?fact)
   (close mydata)
+  (assert (Noticias))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Loading Noticias
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defrule openCartera (declare (salience 30))
+  (Noticias)
+  =>
+  (open "Data/Noticias.txt" mydata)
+  (assert (SeguirLeyendo))
+)
+
+(defrule LeerCarteraFromFile (declare (salience 20))
+  (Noticias)
+  ?f <- (SeguirLeyendo)
+  =>
+  (bind ?Leido (read mydata))
+  (retract ?f)
+  (if (neq ?Leido EOF) then
+    (assert (ValorCartera
+              (Sobre ?Leido)
+              (Tipo (read mydata))
+              (Antiguedad (read mydata))
+      )
+    )
+    (assert (SeguirLeyendo))
+  )
+)
+
+(defrule CloseCartera (declare (salience 10))
+  ?fact <- (Noticias)
+  =>
+  (retract ?fact)
+  (close mydata)
   (assert (detectarInestable))
 )
 
@@ -166,6 +202,42 @@
     (printout t crlf ?nombre " es parte del sector servicios y la economia cae, por defecto es inestable" crlf)
   )
 )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Analisis noticias de caracter general
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defrule NoticiaGeneral (declare (salience 18))
+  (detectarInestable)
+  (Noticia
+    (Sobre Ibex)
+    (Tipo Mala)
+  )
+  =>
+  (assert (NoticiaGeneralMala))
+)
+
+(defrule AniadirInestableNoticiaGeneral (declare (salience 18))
+  (detectarInestable)
+  (NoticiaGeneralMala)
+  (ValorIbex
+    (Nombre ?nombre)
+  )
+  (not (Inestable ?nombre))
+  =>
+  (assert (Inestable ?nombre))
+  (printout t crlf ?nombre " es inestable por una noticia negativa de toda la economia." crlf)
+)
+
+(defrule FinNoticiaGeneral (declare (salience 17))
+  (detectarInestable)
+  ?f <-(NoticiaGeneralMala)
+  =>
+  (retract ?f)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Analisis de noticias de sector
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defrule finDeteccionInestable (declare (salience 0))
   ?fact <- (detectarInestable)

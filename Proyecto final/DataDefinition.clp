@@ -52,3 +52,12 @@
   (field PERCVarSem)
   (field PERCVar12Mes)
 )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Template Noticia
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(deftemplate Noticia
+  (field Sobre)
+  (field Tipo)
+  (field Antiguedad)
+)
