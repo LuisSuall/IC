@@ -139,21 +139,21 @@
 ;;;; Loading Noticias
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defrule openCartera (declare (salience 30))
+(defrule openNoticias (declare (salience 30))
   (Noticias)
   =>
   (open "Data/Noticias.txt" mydata)
   (assert (SeguirLeyendo))
 )
 
-(defrule LeerCarteraFromFile (declare (salience 20))
+(defrule LeerNoticiaFromFile (declare (salience 20))
   (Noticias)
   ?f <- (SeguirLeyendo)
   =>
   (bind ?Leido (read mydata))
   (retract ?f)
   (if (neq ?Leido EOF) then
-    (assert (ValorCartera
+    (assert (Noticia
               (Sobre ?Leido)
               (Tipo (read mydata))
               (Antiguedad (read mydata))
@@ -163,7 +163,7 @@
   )
 )
 
-(defrule CloseCartera (declare (salience 10))
+(defrule CloseNoticias (declare (salience 10))
   ?fact <- (Noticias)
   =>
   (retract ?fact)
@@ -206,19 +206,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Analisis noticias de caracter general
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defrule InicioNoticiaGeneral (declare (salience 19))
+  (detectarInestable)
+  =>
+  (assert (NoticiasGenerales))
+  (printout t crlf "ESTO EXPLOTA MAZO, COLEGA" crlf)
+
+)
+
 (defrule NoticiaGeneral (declare (salience 18))
   (detectarInestable)
+  (NoticiasGenerales)
   (Noticia
     (Sobre Ibex)
     (Tipo Mala)
   )
-  =>
-  (assert (NoticiaGeneralMala))
-)
-
-(defrule AniadirInestableNoticiaGeneral (declare (salience 18))
-  (detectarInestable)
-  (NoticiaGeneralMala)
   (ValorIbex
     (Nombre ?nombre)
   )
@@ -230,13 +232,119 @@
 
 (defrule FinNoticiaGeneral (declare (salience 17))
   (detectarInestable)
-  ?f <-(NoticiaGeneralMala)
+  ?f <-(NoticiasGenerales)
+  =>
+  (retract ?f)
+  (assert (NoticiaSectorNegativa))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Analisis de noticias de sector
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defrule NoticiaSectorMala (declare (salience 18))
+  (detectarInestable)
+  (NoticiaSectorNegativa)
+  (Noticia
+    (Sobre ?sector)
+    (Tipo Mala)
+  )
+  (ValorIbex
+    (Nombre ?nombre)
+    (Sector ?sector)
+  )
+  (not (Inestable ?nombre))
+  =>
+  (assert (Inestable ?nombre))
+  (printout t crlf ?nombre " es inestable por una noticia negativa del sector " ?sector "." crlf)
+)
+
+(defrule FinNoticiaSectorNegativas (declare (salience 17))
+  (detectarInestable)
+  ?f <-(NoticiaSectorNegativa)
+  =>
+  (retract ?f)
+  (assert (NoticiaSectorPositiva))
+)
+
+(defrule NoticiaSectorBuena (declare (salience 18))
+  (detectarInestable)
+  (NoticiaSectorPositiva)
+  (Noticia
+    (Sobre ?sector)
+    (Tipo Buena)
+  )
+  (ValorIbex
+    (Nombre ?nombre)
+    (Sector ?sector)
+  )
+  ?f <- (Inestable ?nombre)
+  =>
+  (retract ?f)
+  (printout t crlf ?nombre " es estable por una noticia positiva del sector " ?sector "." crlf)
+)
+
+(defrule FinNoticiaSectorPositiva (declare (salience 17))
+  (detectarInestable)
+  ?f <-(NoticiaSectorPositiva)
+  =>
+  (retract ?f)
+  (assert (NoticiaEmpresaNegativa))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Analisis de noticias de empresa
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defrule NoticiaEmpresaMala (declare (salience 18))
+  (detectarInestable)
+  (NoticiaEmpresaNegativa)
+  (Noticia
+    (Sobre ?nombre)
+    (Tipo Mala)
+  )
+  (ValorIbex
+    (Nombre ?nombre)
+  )
+  (not (Inestable ?nombre))
+  =>
+  (assert (Inestable ?nombre))
+  (printout t crlf ?nombre " es inestable por una noticia negativa de la empresa." crlf)
+)
+
+(defrule FinNoticiaEmpresaNegativas (declare (salience 17))
+  (detectarInestable)
+  ?f <-(NoticiaEmpresaNegativa)
+  =>
+  (retract ?f)
+  (assert (NoticiaEmpresaPositiva))
+)
+
+(defrule NoticiaEmpresaBuena (declare (salience 18))
+  (detectarInestable)
+  (NoticiaEmpresaPositiva)
+  (Noticia
+    (Sobre ?nombre)
+    (Tipo Buena)
+  )
+  (ValorIbex
+    (Nombre ?nombre)
+  )
+  ?f <- (Inestable ?nombre)
+  =>
+  (retract ?f)
+  (printout t crlf ?nombre " es estable por una noticia positiva de la empresa." crlf)
+)
+
+(defrule FinNoticiaEmpresaPositiva (declare (salience 17))
+  (detectarInestable)
+  ?f <-(NoticiaEmpresaPositiva)
   =>
   (retract ?f)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; Analisis de noticias de sector
+;;;; Fin de la detección de valores inestables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defrule finDeteccionInestable (declare (salience 0))
