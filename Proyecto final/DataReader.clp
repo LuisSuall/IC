@@ -2,7 +2,7 @@
 ;;;; Loading "Analisis.txt"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(deffacts ReaderStepCounter (Step1))
+;(deffacts ReaderStepCounter (Step1))
 
 (defrule openAnalisis (declare (salience 30))
   (Step1)
