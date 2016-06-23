@@ -62,3 +62,25 @@
     (printout t crlf ?nombre " tienes que vender " ?nombre ", esta sobrevaloradisisisisimo." crlf)
   )
 )
+
+(defrule propuestaCambio
+  (Modulo41)
+  (ValorIbex
+    (Nombre ?nombre1)
+    (RPD ?rpd1)
+  )
+  (not (Sobrevalorado ?nombre1))
+  (ValorCartera
+    (Nombre ?nombre2)
+  )
+  (ValorIbex
+    (Nombre ?nombre2)
+    (RPD ?rpd2)
+  )
+  (not (Infravalorado ?nombre2))
+  =>
+  (if (< (+ 0 (+ ?rpd2 1)) ?rpd1) then
+    (assert (Cambiar ?nombre2 ?nombre1 (- ?rpd1 (+ 0 (+ ?rpd2 1))) ))
+    (printout t crlf ?nombre1 " es mejor que " ?nombre2 " colega." crlf)
+  )
+)
