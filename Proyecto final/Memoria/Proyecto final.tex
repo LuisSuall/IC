@@ -1,0 +1,293 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University Assignment Title Page 
+% LaTeX Template
+% Version 1.0 (27/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% WikiBooks (http://en.wikibooks.org/wiki/LaTeX/Title_Creation)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+% Instructions for using this template:
+% This title page is capable of being compiled as is. This is not useful for 
+% including it in another document. To do this, you have two options: 
+%
+% 1) Copy/paste everything between \begin{document} and \end{document} 
+% starting at \begin{titlepage} and paste this into another LaTeX file where you 
+% want your title page.
+% OR
+% 2) Remove everything outside the \begin{titlepage} and \end{titlepage} and 
+% move this file to the same directory as the LaTeX file you wish to add it to. 
+% Then add \input{./title_page_1.tex} to your LaTeX file where you want your
+% title page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{eurosym}
+\usepackage[spanish,activeacute]{babel}
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Universidad de Granada}\\[1.5cm] % Name of your university/college
+\textsc{\Large Proyecto final:}\\[0.5cm] % Major heading such as course name
+\textsc{\large Ingeniería del conocimiento}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Desarrollo de un S.E.}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Autor:}\\
+Luis Suárez Lloréns\\ % Your name
+DNI: 75570369-M
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\end{flushright}
+\end{minipage}\\[4cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Resumen del funcionamiento}
+
+El sistema, toma los datos sobre el IBEX35 y de las noticias relacionadas con la economía. Tras esto, analiza varios factores para reconocer valores que están sobrevalorados y por tanto deberíamos vender, y valores infravalorados que deberíamos comprar, así como valores peligrosos que tengamos en cartera, que deberíamos vender inmediatamente.\\
+
+Tras este análisis, el sistema le presenta al usuario las mejores opciones de una en una, y con la explicación de su razonamiento, y el usuario puede finalmente decidir si realiza la acción que le indica el sistema o no.\\
+
+Tras esto, el usuario puede decidir terminar el programa, o volver a lanzar el programa para obtener nuevas predicciones.\\
+
+El S.E. sigue los siguientes pasos durante su funcionamiento:
+
+\begin{enumerate}
+\item Lectura de datos desde los ficheros.
+\item Análisis de los valores inestables.
+\item Análisis de los valores peligrosos.
+\item Análisis de los valores sobrevalorados.
+\item Análisis de los valores infravalorados.
+\item Creación de propuestas.
+\item Muestra de propuestas al usuario y actuación.
+\end{enumerate}
+\newpage
+
+\section{Proceso de desarrollo}
+\subsection{Sesiones con el experto}
+\subsubsection{Primera sesión}
+Durante la primera sesión con el experto, este nos habló de su trabajo en general, distrayéndose del tema en muchas ocasiones o no respondiendo a algunas de nuestras preguntas otras veces.\\
+
+Tras analizar lo que nos dijo el experto en la sesión, obtuvimos la siguiente información:\\
+\begin{itemize}
+\item Los datos de entrada son el histórico del IBEX35 ---gráficas del último año--- y las noticias relevantes de la economía.
+\item Utiliza las 'subidas' y 'bajadas' que se observan en el histórico para saber si un valor mejorará o no, y en función de esto, realiza movimientos.
+\item Utiliza las noticias para saber el estado de la economía, lo que altera sus decisiones.
+\item El experto clasifica los valores en algunas categorías: infravalorado, sobrevalorado, peligroso,... 
+\end{itemize}
+
+En esa misma sesión, pudimos hablar también con los usuarios y con el empresario que nos ha solicitado el sistema. Los usuarios nos indicaron que no les importaba introducir a mano las noticias importantes en el sistema y el empresario nos dijo que el sistema debería mostrar 5 acciones de posibles movimientos al usuario con su debida explicación, y que el usuario debería tomar finalmente la decisión de realizar el movimiento o no.  
+
+\subsubsection{Segunda sesión}
+Después de la primera sesión, que sirvió como toma de contacto, nos marcamos como objetivo conocer de forma general los diferentes pasos que da el experto durante su trabajo. Además de esto, utilizamos el inicio de la sesión para reafirmar los conocimientos adquiridos en la primera sesión, para evitar los posibles errores que pudiéramos haber cometido en nuestros apuntes o en el análisis posterior de los mismos, o cometidos por la falta de precisión al hablar del experto.\\
+
+El experto nos confirmó la información que teníamos de la sesión anterior, añadiendo algunos detalles, por ejemplo las fuentes de información que utiliza, algunos tipos de valores concretos que mira en los datos del IBEX35 --- entre otros variación con respecto a un mes, un trimestre o un año, datos de crecimiento del sector, ...--- y que las noticias complementan su conocimiento de que empresas son 'inestables'.\\
+
+La información principal que obtenemos de la sesión es la siguiente:
+\begin{itemize}
+\item Primero, toma los valores de la bolsa y las noticias de la economía.
+\item Tras leer las noticias de la economía, el experto sabe que valores hay que estudiar más a fondo pues podrían sufrir una rápida caída, los valores 'inestables'.
+\item Después, revisa los datos del IBEX35 para ver que valores están infravalorados y sobrevalorados. Revisa con especial interés los valores 'inestables' para saber si son o no realmente peligrosos.
+\item Cuando ha terminado de categorizar los valores, realiza las posibles propuestas y realiza los movimientos que considera más apropiados.
+\end{itemize}
+
+\subsubsection{Tercera sesión}
+
+En la tercera sesión, pusimos el foco en saber cuando un valor es inestable, y cuando un valor es peligroso.\\
+
+Sobre los valores inestables, sabemos que por defecto, el sector de la construcción es inestable y el sector servicios también es inestables si la economía está cayendo.\\
+
+Las noticias nos indican el resto de valores inestables. Si hay una noticia mala, los valores afectados pasan a ser inestables durante 3 días, y si hay una noticia buena los valores pasan a ser estables durante 3 días. Hay noticias que afectan a toda la economía, noticias de sector y noticias que afectan a una empresa en concreto. Afectan más las noticias más cercanas a la empresa, por ejemplo, una noticia positiva sobre Endesa haría que fuera estable, pese a tener una noticia negativa sobre el sector de la energía. En el raro caso de que haya noticias positivas y negativas al mismo nivel, el experto deja el valor como estable. Por último, no se considera que una noticia positiva de toda la economía afecte a la inestabilidad de los valores\\
+
+Sobre los valores peligrosos, el experto nos dice que solo se fija en los valores de su cartera, pues el objetivo es detectar si alguno es peligroso, para venderlos rápidamente. Hay dos maneras de declarar un valor como peligroso. Por un lado, un valor es peligroso si el valor es inestable y lleva cayendo 3 días consecutivos. Por otro lado, si lleva cayendo 5 días consecutivos y en total ha caído más del 5\% del comportamiento del sector.
+
+\subsubsection{Resto de sesiones}
+
+El resto de las sesiones siguieron un comportamiento similar. Se fijaba un tema a tratar, y durante la sesión, primero se confirmaba lo obtenido en la sesión anterior y se relizaban preguntas sobre detalles que se habían escapado durante la sesiones anteriores y que son necesarios precisar. Después se procedía a la sección principal donde se sacaba el tema principal y se realizaban preguntas en profundidad al experto para obtener la información necesaria.\\
+
+Los temas que se trataron fueron:\
+\begin{itemize}
+\item Clasificación de valores como sobrevalorados.
+\item Clasificación de valores como infravalorados.
+\item Creación y valoración de propuestas.
+\end{itemize}
+
+\subsection{Validación y verificación}
+
+La verificación se realizó comprobando primero que cada regla funcionara de manera correcta, realizando pruebas ---modificando los datos de entrada a mano--- para comprobar cada una. Tras esto, se realizaron pruebas con el sistema completo, para ver si se producían errores.\\
+
+Además, se analizaron los posibles tipos de inconsistencias de la base de conocimiento.\\
+
+Para la validación nos reunimos con el experto. Tras comprobar con el mismo que el sistema tiene todas las funcionalidades necesarias, hicimos funcionar el sistema en paralelo con el experto, para evaluar si las decisiones del sistema eran coherentes y similares a las decisiones del experto.\\
+
+\newpage
+\section{Descripción del sistema desarrollado}
+
+\subsection{Variables de entrada}
+
+\begin{itemize}
+\item Datos del IBEX35.
+\item Noticias de la economía.
+\item Cartera de valores.
+\item Datos adicionales de la economía, actualmente solo el precio del dinero.
+\end{itemize}
+
+\subsection{Variables de salida}
+
+\begin{itemize}
+\item Propuestas realizadas al usuario.
+\item Cartera de valores modificada.
+\end{itemize}
+
+\subsection{Conocimiento global del sistema}
+
+Inicialmente se carga el precio del dinero desde una regla, y se lanzan una serie de reglas para cargar desde ficheros los datos obtenidos desde el IBEX35 y las noticias. A partir de esos valores se empiezan a deducir el resto de valores del sistema.\\
+
+Pese a que se hace después de la carga, la inestabilidad por defecto de los valores del sector de la construcción también es conocido de partida por el sistema.\\
+
+\subsection{Descripción de los módulos}
+
+\subsubsection{Módulo 0}
+
+La función del módulo 0 es la carga de los valores del sistema, así como añadir los valores que se consideran inestables. Se encuentra en el fichero DataReader.clp.\\
+
+Carga en el sistema todos los datos sobre los valores de la bolsa, los resultados por sectores y de la bolsa en general. Carga también la cartera y las noticias al sistema, y añade el precio del dinero.\\
+
+También se encarga de deducir y clasificar a los valores indicados como inestables.\\
+
+En este módulo encontramos por tanto, las reglas necesarias para la carga de los datos y la búsqueda de valores inestables.\\
+
+\subsubsection{Módulo 1}
+
+La función del módulo 1 es determinar que valores son peligrosos.\\
+
+Toma como entrada los hechos cargados al sistema con el módulo 0, y devuelve como salida la generación de los hechos que indican que un valor es peligroso.\\
+
+Dentro de este módulo encontramos las reglas que calculan si un valor es peligroso.\\
+
+\subsubsection{Módulo 2}
+
+La función del módulo 2 es determinar que valores son sobrevalorados.\\
+
+Tiene por entrada los hechos del módulo 0, y devuelve que valores están sobrevalorados. Evidentemente, contiene todas las reglas para la clasificación de valores sobrevalorados.\\
+ 
+\subsubsection{Módulo 3}
+
+La función del módulo 3 es determinar que valores son infravalorados.\\
+
+Tiene por entrada los hechos del módulo 0, y devuelve que valores están infravalorados. Por tanto, tiene las reglas para la clasificación de valores infravalorados.\\
+
+\subsubsection{Módulo 4}
+%TODO
+
+\subsection{Estructura de funcionamiento}
+
+Primero, se lanza el módulo de carga. Tras este, secuencialmente ---se podría también hacer en paralelo--- se lanzan los módulos 1, 2 y 3. Cuando se han completado los módulos, se llama finalmente al módulo 4.\\
+
+Desde el módulo 4, si el usuario decide volver a obtener 5 propuestas, se vuelve al módulo 1.\\
+
+\subsection{Lista de hechos}
+
+\textbf{Precio del dinero:} Hecho (PrecioDinero 'precio del dinero')
+
+\textbf{Valores de una empresa:} Utiliza el template ValorIbex del fichero 'DataDefinition.clp'. Contiene todos los campos necesarios para el uso del sistema.\\
+
+\textbf{Valores de un sector:} Utiliza el template ValorSector del fichero 'DataDefinition.clp'.\\
+
+\textbf{Valores de la bolsa en general:} Utiliza el template ValorIbex del fichero 'DataDefinition.clp'. Tiene como valor del campo nombre 'IBEX'.\\
+
+\textbf{Noticia:} Utiliza el template Noticia del fichero 'DataDefinition.clp'. Indica que sobre que es la noticia, si es buena o mala y su antigüedad.\\
+
+\textbf{Cartera:} Cada elemento de la cartera utiliza el template ValorCartera del fichero 'DataDefinition.clp'. El dinero libre se encuentra con el nombre 'DISPONIBLE'.\\
+
+\textbf{Inestable:} Hecho (Inestable 'nombreEmpresa').\\
+
+\textbf{Peligroso:} Hecho (Peligroso 'nombreEmpresa').\\
+
+\textbf{Sobrevalorado:} Hecho (Sobrevalorado 'nombreEmpresa').\\
+
+\textbf{Infravalorado:} Hecho (Infravalorado 'nombreEmpresa').\\
+
+\textbf{Propuestas:} Hechos:
+\begin{itemize}
+\item (VenderPeligroso 'nombreEmpresa' RE)
+\item (ComprarInfravalorado 'nombreEmpresa' RE)
+\item (VenderSobrevalorado 'nombreEmpresa' RE)
+\item (Cambiar 'nombreEmpresa1' 'nombreEmpresa2' RE)
+\end{itemize}
+
+\newpage
+\section{Manual de uso}
+
+Se carga el programa con el fichero Carga.clp.\\
+
+Tras ejecutar el sistema experto, se le presentarán al usuario, una a una, las 5 propuestas. Él puede decidir si las realiza o no. Tras esto, el usuario tiene dos opciones, volver a lanzar el programa o terminar su uso. Al terminar su uso, se guarda la cartera en disco.\\
+\end{document}
