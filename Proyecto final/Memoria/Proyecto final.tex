@@ -246,7 +246,12 @@ La función del módulo 3 es determinar que valores son infravalorados.\\
 Tiene por entrada los hechos del módulo 0, y devuelve que valores están infravalorados. Por tanto, tiene las reglas para la clasificación de valores infravalorados.\\
 
 \subsubsection{Módulo 4}
-%TODO
+
+La función del módulo 4 es la realización de propuestas al usuario. La dividiremos en dos, por un lado la creación de la propuesta, y por otro, su representación.\\
+
+En el módulo 4.1 se encarga de calcular las propuestas, y la bondad de las mismas. Se encuentra en él las cuatro reglas para el cálculo de propuestas.\\
+
+En el módulo 4.2 se encuentra el conjunto de reglas para el funcionamiento del menú y la gestión y almacenamiento de la cartera.\\
 
 \subsection{Estructura de funcionamiento}
 
@@ -278,16 +283,16 @@ Desde el módulo 4, si el usuario decide volver a obtener 5 propuestas, se vuelv
 
 \textbf{Propuestas:} Hechos:
 \begin{itemize}
-\item (VenderPeligroso 'nombreEmpresa' RE)
-\item (ComprarInfravalorado 'nombreEmpresa' RE)
-\item (VenderSobrevalorado 'nombreEmpresa' RE)
-\item (Cambiar 'nombreEmpresa1' 'nombreEmpresa2' RE)
+\item (Propuesta VenderPeligroso 'nombreEmpresa' 'vacio' RE explicación)
+\item (Propuesta ComprarInfravalorado 'nombreEmpresa' 'vacio' RE explicación)
+\item (Propuesta VenderSobrevalorado 'nombreEmpresa' 'vacio' RE explicación)
+\item (Propuesta Cambiar 'nombreEmpresa1' 'nombreEmpresa2' RE explicación)
 \end{itemize}
 
 \newpage
 \section{Manual de uso}
 
-Se carga el programa con el fichero Carga.clp.\\
+Se carga el programa con el fichero Carga.clp. Para ello, en CLIPS, se carga el fichero Carga.clp y luego se hace le dan las ordenes (reset) y (run).\\
 
 Tras ejecutar el sistema experto, se le presentarán al usuario, una a una, las 5 propuestas. Él puede decidir si las realiza o no. Tras esto, el usuario tiene dos opciones, volver a lanzar el programa o terminar su uso. Al terminar su uso, se guarda la cartera en disco.\\
 \end{document}

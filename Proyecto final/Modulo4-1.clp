@@ -14,8 +14,14 @@
   =>
   (if(< ?varmen 0) then
     (if (< (- ?varmen ?varmensector) -3) then
-      (assert (VenderPeligroso ?nombre (- 20 ?rpd)))
-      (printout t crlf ?nombre " tienes que venderlo, es tope peligroso." crlf)
+      (assert (Propuesta VenderPeligroso ?nombre vacio (- 20 ?rpd)
+                  (str-cat "La empresa " ?nombre
+                            " es peligrosa, además demuestra una tendencia bajista con respecto a su sector. Según mi estimación existe una probabilidad no despreciable de que pueda caer al cabo del año un 20%, aunque produzca "
+                            ?rpd
+                            " por dividendos."
+                  )
+              )
+      )
     )
   )
 )
@@ -34,8 +40,15 @@
   )
   =>
   (if (!= ?per 0) then
-    (assert (ComprarInfravalorado ?nombre (+(/ (* (- ?permedio ?per) 100) (* ?per 5)) ?rpd) ))
-    (printout t crlf ?nombre " tienes que comprar " ?nombre ", es un chollo." crlf)
+    (assert (Propuesta ComprarInfravalorado ?nombre vacio (+(/ (* (- ?permedio ?per) 100) (* ?per 5)) ?rpd)
+                (str-cat "Esta empresa está infravalorada y seguramente el PER tienda al PER medio en 5 años, con lo que se debería revalorizar un "
+                          (/ (* (- ?permedio ?per) 100) (* ?per 5))
+                          " anual, a lo que habría que sumar el "
+                          ?rpd
+                          " de beneficios por dividendos."
+                )
+            )
+    )
   )
 )
 
@@ -58,8 +71,15 @@
   =>
   ;TODO: falta una condicion
   (if (!= ?per 0) then
-    (assert (VenderSobrevalorado ?nombre (-(/ (* (- ?per ?permediosector) 100) (* ?per 5)) ?rpd) ))
-    (printout t crlf ?nombre " tienes que vender " ?nombre ", esta sobrevaloradisisisisimo." crlf)
+    (assert (Propuesta VenderSobrevalorado ?nombre vacio (-(/ (* (- ?per ?permediosector) 100) (* ?per 5)) ?rpd)
+                (str-cat "Esta empresa está sobrevalorada, es mejor amortizar lo invertido ya que seguramente el PER tan alto deberá bajar al PER medio del sector en unos 5 años, con lo que se debería devaluar un "
+                          (/ (* (- ?per ?permediosector) 100) (* ?per 5))
+                          " así que aunque se pierda el "
+                          ?rpd
+                          " de beneficios por dividendos saldría rentable."
+                )
+            )
+    )
   )
 )
 
@@ -80,7 +100,23 @@
   (not (Infravalorado ?nombre2))
   =>
   (if (< (+ 0 (+ ?rpd2 1)) ?rpd1) then
-    (assert (Cambiar ?nombre2 ?nombre1 (- ?rpd1 (+ 0 (+ ?rpd2 1))) ))
-    (printout t crlf ?nombre1 " es mejor que " ?nombre2 " colega." crlf)
+    (assert (Propuesta Cambiar ?nombre2 ?nombre1 (- ?rpd1 (+ 0 (+ ?rpd2 1)))
+                (str-cat ?nombre1
+                          " debe tener una revalorización acorde con la evolución de la bolsa, por dividendos se espera un "
+                          ?rpd1
+                          " que es más de lo que está dando "
+                          ?nombre2
+                          " por lo que propongo cambiar los valores."
+                )
+            )
+
+    )
   )
+)
+
+(defrule PasoAModulo42 (declare (salience -1))
+  ?f <- (Modulo41)
+  =>
+  (retract ?f)
+  (assert (Modulo42))
 )

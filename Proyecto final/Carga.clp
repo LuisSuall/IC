@@ -9,6 +9,7 @@
   (load "./Modulo2.clp")
   (load "./Modulo3.clp")
   (load "./Modulo4-1.clp")
+  (load "./Modulo4-2.clp")
   (retract ?f)
   (assert (Step1))
 )

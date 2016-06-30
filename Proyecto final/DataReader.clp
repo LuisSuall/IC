@@ -210,8 +210,6 @@
   (detectarInestable)
   =>
   (assert (NoticiasGenerales))
-  (printout t crlf "ESTO EXPLOTA MAZO, COLEGA" crlf)
-
 )
 
 (defrule NoticiaGeneral (declare (salience 18))

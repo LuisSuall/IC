@@ -27,7 +27,7 @@
   )
 )
 
-(defrule PasoAModulo2 (declare (salience 0))
+(defrule PasoAModulo2
   ?f <- (Modulo1)
   =>
   (retract ?f)
