@@ -31,6 +31,7 @@
   (Infravalorado ?nombre)
   (ValorIbex
     (Nombre ?nombre)
+    (Precio ?precio)
     (PER ?per)
     (RPD ?rpd)
   )
@@ -38,8 +39,12 @@
     (Nombre Ibex)
     (PER ?permedio)
   )
+  (ValorCartera
+      (Nombre DISPONIBLE)
+      (ValorTotal ?valor)
+  )
   =>
-  (if (!= ?per 0) then
+  (if (and (!= ?per 0) (< ?precio ?valor)) then
     (assert (Propuesta ComprarInfravalorado ?nombre vacio (+(/ (* (- ?permedio ?per) 100) (* ?per 5)) ?rpd)
                 (str-cat "La empresa " ?nombre " esta infravalorada y seguramente el PER tienda al PER medio en 5 anios, con lo que se deberia revalorizar un "
                           (/ (* (- ?permedio ?per) 100) (* ?per 5))
@@ -69,9 +74,8 @@
     (PER ?permediosector)
   )
   =>
-  ;TODO: falta una condicion
   (if (!= ?per 0) then
-    (assert (Propuesta VenderSobrevalorado ?nombre vacio (-(/ (* (- ?per ?permediosector) 100) (* ?per 5)) ?rpd)
+    (assert (Propuesta VenderSobrevalorado ?nombre vacio (-(/ (* (- ?per ?permediosector) 100) (* ?per 5)) (* ?rpd 100))
                 (str-cat "La empresa " ?nombre " esta sobrevalorada, es mejor amortizar lo invertido ya que seguramente el PER tan alto debera bajar al PER medio del sector en unos 5 anios, con lo que se deberia devaluar un "
                           (/ (* (- ?per ?permediosector) 100) (* ?per 5))
                           " asi que aunque se pierda el "
@@ -99,8 +103,8 @@
   )
   (not (Infravalorado ?nombre2))
   =>
-  (if (< (+ 0 (+ ?rpd2 1)) ?rpd1) then
-    (assert (Propuesta Cambiar ?nombre2 ?nombre1 (- ?rpd1 (+ 0 (+ ?rpd2 1)))
+  (if (< (+ 0 (+ (* ?rpd2 100) 1)) (* ?rpd1 100)) then
+    (assert (Propuesta Cambiar ?nombre2 ?nombre1 (- (* 100 ?rpd1) (+ 0 (+ (* ?rpd2 100) 1)))
                 (str-cat ?nombre1
                           " debe tener una revalorizacion acorde con la evolucion de la bolsa, por dividendos se espera un "
                           ?rpd1

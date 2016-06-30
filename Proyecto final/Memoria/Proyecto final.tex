@@ -139,7 +139,7 @@ Durante la primera sesión con el experto, este nos habló de su trabajo en gene
 Tras analizar lo que nos dijo el experto en la sesión, obtuvimos la siguiente información:\\
 \begin{itemize}
 \item Los datos de entrada son el histórico del IBEX35 ---gráficas del último año--- y las noticias relevantes de la economía.
-\item Utiliza las 'subidas' y 'bajadas' que se observan en el histórico para saber si un valor mejorará o no, y en función de esto, realiza movimientos.
+\item Utiliza las subidas y bajadas que se observan en el histórico para saber si un valor mejorará o no, y en función de esto, realiza movimientos.
 \item Utiliza las noticias para saber el estado de la economía, lo que altera sus decisiones.
 \item El experto clasifica los valores en algunas categorías: infravalorado, sobrevalorado, peligroso,... 
 \end{itemize}
@@ -149,13 +149,13 @@ En esa misma sesión, pudimos hablar también con los usuarios y con el empresar
 \subsubsection{Segunda sesión}
 Después de la primera sesión, que sirvió como toma de contacto, nos marcamos como objetivo conocer de forma general los diferentes pasos que da el experto durante su trabajo. Además de esto, utilizamos el inicio de la sesión para reafirmar los conocimientos adquiridos en la primera sesión, para evitar los posibles errores que pudiéramos haber cometido en nuestros apuntes o en el análisis posterior de los mismos, o cometidos por la falta de precisión al hablar del experto.\\
 
-El experto nos confirmó la información que teníamos de la sesión anterior, añadiendo algunos detalles, por ejemplo las fuentes de información que utiliza, algunos tipos de valores concretos que mira en los datos del IBEX35 --- entre otros variación con respecto a un mes, un trimestre o un año, datos de crecimiento del sector, ...--- y que las noticias complementan su conocimiento de que empresas son 'inestables'.\\
+El experto nos confirmó la información que teníamos de la sesión anterior, añadiendo algunos detalles, por ejemplo las fuentes de información que utiliza, algunos tipos de valores concretos que mira en los datos del IBEX35 --- entre otros variación con respecto a un mes, un trimestre o un año, datos de crecimiento del sector, ...--- y que las noticias complementan su conocimiento de que empresas son inestables.\\
 
 La información principal que obtenemos de la sesión es la siguiente:
 \begin{itemize}
 \item Primero, toma los valores de la bolsa y las noticias de la economía.
-\item Tras leer las noticias de la economía, el experto sabe que valores hay que estudiar más a fondo pues podrían sufrir una rápida caída, los valores 'inestables'.
-\item Después, revisa los datos del IBEX35 para ver que valores están infravalorados y sobrevalorados. Revisa con especial interés los valores 'inestables' para saber si son o no realmente peligrosos.
+\item Tras leer las noticias de la economía, el experto sabe que valores hay que estudiar más a fondo pues podrían sufrir una rápida caída, los valores inestables.
+\item Después, revisa los datos del IBEX35 para ver que valores están infravalorados y sobrevalorados. Revisa con especial interés los valores inestables para saber si son o no realmente peligrosos.
 \item Cuando ha terminado de categorizar los valores, realiza las posibles propuestas y realiza los movimientos que considera más apropiados.
 \end{itemize}
 
@@ -173,7 +173,7 @@ Sobre los valores peligrosos, el experto nos dice que solo se fija en los valore
 
 El resto de las sesiones siguieron un comportamiento similar. Se fijaba un tema a tratar, y durante la sesión, primero se confirmaba lo obtenido en la sesión anterior y se relizaban preguntas sobre detalles que se habían escapado durante la sesiones anteriores y que son necesarios precisar. Después se procedía a la sección principal donde se sacaba el tema principal y se realizaban preguntas en profundidad al experto para obtener la información necesaria.\\
 
-Los temas que se trataron fueron:\
+Los temas que se trataron fueron:
 \begin{itemize}
 \item Clasificación de valores como sobrevalorados.
 \item Clasificación de valores como infravalorados.
@@ -261,38 +261,38 @@ Desde el módulo 4, si el usuario decide volver a obtener 5 propuestas, se vuelv
 
 \subsection{Lista de hechos}
 
-\textbf{Precio del dinero:} Hecho (PrecioDinero 'precio del dinero')
+\textbf{Precio del dinero:} Hecho (PrecioDinero precioDelDinero)
 
-\textbf{Valores de una empresa:} Utiliza el template ValorIbex del fichero 'DataDefinition.clp'. Contiene todos los campos necesarios para el uso del sistema.\\
+\textbf{Valores de una empresa:} Utiliza el template ValorIbex del fichero DataDefinition.clp. Contiene todos los campos necesarios para el uso del sistema.\\
 
-\textbf{Valores de un sector:} Utiliza el template ValorSector del fichero 'DataDefinition.clp'.\\
+\textbf{Valores de un sector:} Utiliza el template ValorSector del fichero DataDefinition.clp.\\
 
-\textbf{Valores de la bolsa en general:} Utiliza el template ValorIbex del fichero 'DataDefinition.clp'. Tiene como valor del campo nombre 'IBEX'.\\
+\textbf{Valores de la bolsa en general:} Utiliza el template ValorIbex del fichero DataDefinition.clp. Tiene como valor del campo nombre IBEX.\\
 
-\textbf{Noticia:} Utiliza el template Noticia del fichero 'DataDefinition.clp'. Indica que sobre que es la noticia, si es buena o mala y su antigüedad.\\
+\textbf{Noticia:} Utiliza el template Noticia del fichero DataDefinition.clp. Indica que sobre que es la noticia, si es buena o mala y su antigüedad.\\
 
-\textbf{Cartera:} Cada elemento de la cartera utiliza el template ValorCartera del fichero 'DataDefinition.clp'. El dinero libre se encuentra con el nombre 'DISPONIBLE'.\\
+\textbf{Cartera:} Cada elemento de la cartera utiliza el template ValorCartera del fichero DataDefinition.clp. El dinero libre se encuentra con el nombre DISPONIBLE.\\
 
-\textbf{Inestable:} Hecho (Inestable 'nombreEmpresa').\\
+\textbf{Inestable:} Hecho (Inestable nombreEmpresa).\\
 
-\textbf{Peligroso:} Hecho (Peligroso 'nombreEmpresa').\\
+\textbf{Peligroso:} Hecho (Peligroso nombreEmpresa).\\
 
-\textbf{Sobrevalorado:} Hecho (Sobrevalorado 'nombreEmpresa').\\
+\textbf{Sobrevalorado:} Hecho (Sobrevalorado nombreEmpresa).\\
 
-\textbf{Infravalorado:} Hecho (Infravalorado 'nombreEmpresa').\\
+\textbf{Infravalorado:} Hecho (Infravalorado nombreEmpresa).\\
 
 \textbf{Propuestas:} Hechos:
 \begin{itemize}
-\item (Propuesta VenderPeligroso 'nombreEmpresa' 'vacio' RE explicación)
-\item (Propuesta ComprarInfravalorado 'nombreEmpresa' 'vacio' RE explicación)
-\item (Propuesta VenderSobrevalorado 'nombreEmpresa' 'vacio' RE explicación)
-\item (Propuesta Cambiar 'nombreEmpresa1' 'nombreEmpresa2' RE explicación)
+\item (Propuesta VenderPeligroso nombreEmpresa vacio RE explicación)
+\item (Propuesta ComprarInfravalorado nombreEmpres vacio RE explicación)
+\item (Propuesta VenderSobrevalorado nombreEmpresa vacio RE explicación)
+\item (Propuesta Cambiar nombreEmpresa1 nombreEmpresa2 RE explicación)
 \end{itemize}
 
 \textbf{Acciones:} Hechos:
 \begin{itemize}
-\item (Operacion Vender 'nombreEmpresa')
-\item (Operacion Comprar 'nombreEmpresa')
+\item (Operacion Vender nombreEmpresa)
+\item (Operacion Comprar nombreEmpresa)
 \end{itemize}
 \newpage
 \section{Manual de uso}
