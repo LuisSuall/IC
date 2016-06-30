@@ -8,7 +8,6 @@
   (not (Infravalorado ?nombre))
   =>
   (assert (Infravalorado ?nombre))
-  (printout t crlf ?nombre " esta Infravalorado (Regla-1)." crlf)
 )
 
 (defrule Infravalorado2
@@ -39,7 +38,6 @@
     (if(> ?varmen 0) then
       (if(< ?varmen 10) then
         (assert (Infravalorado ?nombre))
-        (printout t crlf ?nombre " esta Infravalorado (Regla-2)." crlf)
       )
     )
   )
@@ -60,7 +58,6 @@
   (if(> ?var 0) then
     (if(> ?varsector 0) then
       (assert (Infravalorado ?nombre))
-      (printout t crlf ?nombre " esta Infravalorado (Regla-3)." crlf)
     )
   )
 )

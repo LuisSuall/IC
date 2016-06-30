@@ -8,7 +8,6 @@
   )
   =>
   (assert (Peligroso ?nombre))
-  (printout t crlf ?nombre " es peligroso(Inestable)." crlf)
 )
 
 (defrule Peligroso (declare (salience 5))
@@ -23,7 +22,6 @@
   =>
   (if(< ?var -5) then
     (assert (Peligroso ?nombre))
-    (printout t crlf ?nombre " es peligroso." crlf)
   )
 )
 

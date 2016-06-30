@@ -183,7 +183,6 @@
   )
   =>
   (assert (Inestable ?nombre))
-  (printout t crlf ?nombre " es parte del sector de la construccion, por defecto es inestable" crlf)
 )
 
 (defrule AniadirInestableServicios (declare (salience 20))
@@ -199,7 +198,6 @@
   =>
   (if (< ?var 0) then
     (assert (Inestable ?nombre))
-    (printout t crlf ?nombre " es parte del sector servicios y la economia cae, por defecto es inestable" crlf)
   )
 )
 
@@ -225,7 +223,6 @@
   (not (Inestable ?nombre))
   =>
   (assert (Inestable ?nombre))
-  (printout t crlf ?nombre " es inestable por una noticia negativa de toda la economia." crlf)
 )
 
 (defrule FinNoticiaGeneral (declare (salience 17))
@@ -254,7 +251,6 @@
   (not (Inestable ?nombre))
   =>
   (assert (Inestable ?nombre))
-  (printout t crlf ?nombre " es inestable por una noticia negativa del sector " ?sector "." crlf)
 )
 
 (defrule FinNoticiaSectorNegativas (declare (salience 17))
@@ -279,7 +275,6 @@
   ?f <- (Inestable ?nombre)
   =>
   (retract ?f)
-  (printout t crlf ?nombre " es estable por una noticia positiva del sector " ?sector "." crlf)
 )
 
 (defrule FinNoticiaSectorPositiva (declare (salience 17))
@@ -307,7 +302,6 @@
   (not (Inestable ?nombre))
   =>
   (assert (Inestable ?nombre))
-  (printout t crlf ?nombre " es inestable por una noticia negativa de la empresa." crlf)
 )
 
 (defrule FinNoticiaEmpresaNegativas (declare (salience 17))
@@ -331,7 +325,6 @@
   ?f <- (Inestable ?nombre)
   =>
   (retract ?f)
-  (printout t crlf ?nombre " es estable por una noticia positiva de la empresa." crlf)
 )
 
 (defrule FinNoticiaEmpresaPositiva (declare (salience 17))

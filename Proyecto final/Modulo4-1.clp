@@ -16,7 +16,7 @@
     (if (< (- ?varmen ?varmensector) -3) then
       (assert (Propuesta VenderPeligroso ?nombre vacio (- 20 ?rpd)
                   (str-cat "La empresa " ?nombre
-                            " es peligrosa, además demuestra una tendencia bajista con respecto a su sector. Según mi estimación existe una probabilidad no despreciable de que pueda caer al cabo del año un 20%, aunque produzca "
+                            " es peligrosa, ademas demuestra una tendencia bajista con respecto a su sector. Segun mi estimacion existe una probabilidad no despreciable de que pueda caer al cabo del anio un 20%, aunque produzca "
                             ?rpd
                             " por dividendos."
                   )
@@ -41,9 +41,9 @@
   =>
   (if (!= ?per 0) then
     (assert (Propuesta ComprarInfravalorado ?nombre vacio (+(/ (* (- ?permedio ?per) 100) (* ?per 5)) ?rpd)
-                (str-cat "Esta empresa está infravalorada y seguramente el PER tienda al PER medio en 5 años, con lo que se debería revalorizar un "
+                (str-cat "La empresa " ?nombre " esta infravalorada y seguramente el PER tienda al PER medio en 5 anios, con lo que se deberia revalorizar un "
                           (/ (* (- ?permedio ?per) 100) (* ?per 5))
-                          " anual, a lo que habría que sumar el "
+                          " anual, a lo que habria que sumar el "
                           ?rpd
                           " de beneficios por dividendos."
                 )
@@ -72,11 +72,11 @@
   ;TODO: falta una condicion
   (if (!= ?per 0) then
     (assert (Propuesta VenderSobrevalorado ?nombre vacio (-(/ (* (- ?per ?permediosector) 100) (* ?per 5)) ?rpd)
-                (str-cat "Esta empresa está sobrevalorada, es mejor amortizar lo invertido ya que seguramente el PER tan alto deberá bajar al PER medio del sector en unos 5 años, con lo que se debería devaluar un "
+                (str-cat "La empresa " ?nombre " esta sobrevalorada, es mejor amortizar lo invertido ya que seguramente el PER tan alto debera bajar al PER medio del sector en unos 5 anios, con lo que se deberia devaluar un "
                           (/ (* (- ?per ?permediosector) 100) (* ?per 5))
-                          " así que aunque se pierda el "
+                          " asi que aunque se pierda el "
                           ?rpd
-                          " de beneficios por dividendos saldría rentable."
+                          " de beneficios por dividendos saldria rentable."
                 )
             )
     )
@@ -102,9 +102,9 @@
   (if (< (+ 0 (+ ?rpd2 1)) ?rpd1) then
     (assert (Propuesta Cambiar ?nombre2 ?nombre1 (- ?rpd1 (+ 0 (+ ?rpd2 1)))
                 (str-cat ?nombre1
-                          " debe tener una revalorización acorde con la evolución de la bolsa, por dividendos se espera un "
+                          " debe tener una revalorizacion acorde con la evolucion de la bolsa, por dividendos se espera un "
                           ?rpd1
-                          " que es más de lo que está dando "
+                          " que es mas de lo que esta dando "
                           ?nombre2
                           " por lo que propongo cambiar los valores."
                 )

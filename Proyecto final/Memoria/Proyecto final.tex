@@ -289,10 +289,19 @@ Desde el módulo 4, si el usuario decide volver a obtener 5 propuestas, se vuelv
 \item (Propuesta Cambiar 'nombreEmpresa1' 'nombreEmpresa2' RE explicación)
 \end{itemize}
 
+\textbf{Acciones:} Hechos:
+\begin{itemize}
+\item (Operacion Vender 'nombreEmpresa')
+\item (Operacion Comprar 'nombreEmpresa')
+\end{itemize}
 \newpage
 \section{Manual de uso}
 
 Se carga el programa con el fichero Carga.clp. Para ello, en CLIPS, se carga el fichero Carga.clp y luego se hace le dan las ordenes (reset) y (run).\\
 
-Tras ejecutar el sistema experto, se le presentarán al usuario, una a una, las 5 propuestas. Él puede decidir si las realiza o no. Tras esto, el usuario tiene dos opciones, volver a lanzar el programa o terminar su uso. Al terminar su uso, se guarda la cartera en disco.\\
+Tras ejecutar el sistema experto, se le presentarán al usuario, una a una, las 5 propuestas. Él puede decidir si las realiza o no. Si la toma, en el caso de unan venta, se venderán las acciones automáticamente. Si la toma y es una compra, sale un menú donde deberá introducir el número de acciones que quiere comprar. El caso de un intercambio se traduce en una venta de acciones y una posterior compra.\\
+
+Ya se realice la acción o se diga que no, el sistema mostrará la siguiente acción recomendada, hasta llegar a las 5 acciones.\\
+
+Tras esto, el usuario tiene dos opciones, volver a lanzar el programa o terminar su uso. Al terminar su uso, se guarda la cartera en disco.\\
 \end{document}

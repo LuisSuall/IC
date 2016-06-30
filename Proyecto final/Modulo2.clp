@@ -8,7 +8,6 @@
   (not (Sobrevalorado ?nombre))
   =>
   (assert (Sobrevalorado ?nombre))
-  (printout t crlf ?nombre " esta sobrevalorado (General)." crlf)
 )
 
 (defrule SobrevaloradoEmpPeque
@@ -29,7 +28,6 @@
   (not (Sobrevalorado ?nombre))
   =>
   (assert (Sobrevalorado ?nombre))
-  (printout t crlf ?nombre " esta sobrevalorado (Empresa pequenia)." crlf)
 )
 
 (defrule SobrevaloradoEmpGrande
@@ -57,7 +55,6 @@
   (not (Sobrevalorado ?nombre))
   =>
   (assert (Sobrevalorado ?nombre))
-  (printout t crlf ?nombre " esta sobrevalorado (Empresa grande)." crlf)
 )
 
 (defrule PasoAModulo3 (declare (salience -10))
